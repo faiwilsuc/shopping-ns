@@ -1,0 +1,24 @@
+<ScrollView class="page animation-left-to-right">
+    <StackLayout>
+        <StackLayout>
+            <ns-cart-item *ngFor="let item of orders" [model]="item"></ns-cart-item>
+        </StackLayout>
+        <StackLayout class="gray-bg mark-text bold-text">
+            <FlexboxLayout class="total-item bottom-border">
+                <Label text="SUBTOTAL" class="lbl"></Label>
+                <Label [text]="subTotal"></Label>
+            </FlexboxLayout>
+            <StackLayout class="bottom-border" padding="15 0">
+                <FlexboxLayout class="total-item normal-text" paddingBottom="0">
+                    <Label text="DELIVERY FEE" class="lbl"></Label>
+                    <Label [text]="fee"></Label>
+                </FlexboxLayout>
+                <FlexboxLayout class="total-item">
+                    <Label text="TOTAL" class="lbl"></Label>
+                    <Label [text]="total"></Label>
+                </FlexboxLayout>
+                <Button [text]="'Procced to checkout'" [nsRouterLink]="['/main/checkout']"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

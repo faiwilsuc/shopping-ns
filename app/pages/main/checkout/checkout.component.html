@@ -1,0 +1,171 @@
+<StackLayout class="page animation-left-to-right">
+
+    <StackLayout class="widget" orientation="horizontal" horizontalAlignment="right" paddingRight="6">
+        <StackLayout class="active-bg" padding="5" orientation="horizontal">
+            <Label [text]="'Order total: '+totalPrice"></Label>
+            <Label [text]="cartCount" class="count"></Label>
+        </StackLayout>
+    </StackLayout>
+
+
+    <StackLayout #subPage class="right-position">
+        <ScrollView *ngIf="componentSubpage===CheckoutPickupSubpage.datePage">
+            <radio-group [items]="deliveryDates" [selectedItem]="selectedDate" (onSelected)="onCloseSubpage($event)">
+            </radio-group>
+        </ScrollView>
+        <ScrollView *ngIf="componentSubpage===CheckoutPickupSubpage.timePage">
+            <radio-group [items]="deliveryTimes" [selectedItem]="selectedTime" (onSelected)="onCloseSubpage($event)">
+            </radio-group>
+        </ScrollView>
+    </StackLayout>
+    <ScrollView #mainPage>
+        <StackLayout *ngIf="!showFinalPage && showMainpage ">
+
+            <StackLayout class="page1 ">
+                <Label style="font-size:25; font-weight:bold " text="Almost there "></Label>
+                <button text="Log in>" (tap)="login()" class="loginBtn border"></button>
+                <Label text="or just continue checkout as a guest" style="font-size:17"></Label>
+                <GridLayout columns="*, auto" class="title bottom-border">
+                    <Label col="0" [text]="componentCheckoutMode === CheckoutMode.pickup ?  '1. Pick-up Information' : '1. Delivery Information'"></Label>
+                    <!--<Image col="1" src="~/images/edit.png" style="width:30; height:30" (tap)="next()"></Image>-->
+                </GridLayout>
+                <GridLayout columns="*, *" marginTop="20">
+                    <StackLayout col="0" [class]="'pick-info bold-text ' + (pickType==0?'green-bg':'border pick-info-color')" (tap)="onSelType(0)">
+                        <Label [text]="componentCheckoutMode === CheckoutMode.pickup ?  'PICKUP ASAP' : 'DELIVERY ASAP'"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" [class]="'pick-info bold-text ' + (pickType==1?'green-bg':'border pick-info-color')" (tap)="onSelType(1)">
+                        <Label [text]="componentCheckoutMode === CheckoutMode.pickup ?  'PICKUP LATER' : 'DELIVERY LATER'"></Label>
+                    </StackLayout>
+                </GridLayout>
+                <StackLayout *ngIf="pickType==1" marginTop=20>
+                    <detail-item [label]="selectedDate ? selectedDate.label : 'Select date...'" [color]="selectedDate ? '#575959' : '#ff5832'" (tap)="showDates()"></detail-item>
+                    <detail-item [label]="selectedTime ? selectedTime.label : 'Select time...'" [color]="selectedTime ? '#575959' : '#ff5832'" (tap)="showTimes()"></detail-item>
+                </StackLayout>
+                <StackLayout *ngIf="componentCheckoutMode === CheckoutMode.delivery" marginTop=20>
+                    <Label [text]="'Delivery address'"></Label>
+                    <GridLayout columns="*,2*">
+                        <TextField col=0 [(ngModel)]="streetNo" hint="Street No." class="txt border"></TextField>
+                        <TextField col=1 [(ngModel)]="streetName" hint="Street Name" class="txt border" marginLeft=20></TextField>
+                    </GridLayout>
+                    <FlexboxLayout marginTop="20">
+                        <Label flexGrow="1" text="Suburb"></Label>
+                        <Label flexGrow="1" [text]="suburb" class="mark-text"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+                <Label class="lbl" text="Comments/Instructions:" marginTop=20></Label>
+                <TextView class="comment border" hint="Leave any instructions about your meal, or delivery information here">
+                </TextView>
+            </StackLayout>
+            <StackLayout class="page1">
+                <GridLayout row="0" columns="*, auto" class="title bottom-border">
+                    <Label col="0" text="2. Contact Information"></Label>
+                    <!--<Image col="1" src="~/images/edit.png" style="width:30; height:30" (tap)="next()"></Image>-->
+                </GridLayout>
+                <StackLayout class="wrapper">
+                    <Label text="First Name"></Label>
+                    <TextField [(ngModel)]="firstName" class="txt border"></TextField>
+                </StackLayout>
+                <StackLayout class="wrapper">
+                    <Label text="Last Name"></Label>
+                    <TextField [(ngModel)]="lastName" class="txt border"></TextField>
+                </StackLayout>
+                <StackLayout class="wrapper">
+                    <Label text="Email address"></Label>
+                    <TextField [(ngModel)]="email" class="txt border"></TextField>
+                </StackLayout>
+                <StackLayout class="wrapper">
+                    <Label text="Mobile number"></Label>
+                    <TextField [(ngModel)]="phoneNumber" class="txt border"></TextField>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="page1">
+                <GridLayout row="0" columns="*, auto" class="title bottom-border" marginBottom="15">
+                    <Label col="0" text="3. Payment Information"></Label>
+                    <!--<Image col="1" src="~/images/edit.png" style="width:30; height:30" (tap)="next()"></Image>-->
+                </GridLayout>
+                <card-item *ngFor="let card of cardData; let i=index" [icon]="card.icon" [label]="card.label" [isSelected]="selIndex===i" (selected)="onSelectCard(i)">
+                </card-item>
+                <StackLayout class="wrapper">
+                    <Label text="Voucher code?"></Label>
+                    <TextField [(ngModel)]="code" class="txt border"></TextField>
+                </StackLayout>
+                <Label style="margin-top:10" text="(Vouchers are not redeemable with"></Label>
+                <StackLayout orientation="horizontal">
+                    <Label text="cash payments."></Label>
+                    <Label class="bold-text" text="Terms"></Label>
+                </StackLayout>
+                <button text="Place my order >" class="order-btn active-bg bold-text" (tap)="placeOrder()"></button>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+    <StackLayout #finalPage class="right-position">
+        <StackLayout *ngIf="showFinalPage  && showMainpage">
+            <FlexboxLayout class="header">
+                <Label text="Your order has been submitted" flexGrow="1"></Label>
+            </FlexboxLayout>
+
+            <ScrollView *ngIf="componentCheckoutMode === CheckoutMode.pickup">
+                <StackLayout orientation="vertical">
+                    <Image src="~/images/home.png"></Image>
+                    <FlexboxLayout class="bottom-border" height="44">
+                    </FlexboxLayout>
+                    <ns-accordion [label]="'Order details'" [icon]="''" [open]="true">
+                        <StackLayout class="order-item bottom-border">
+                            <Label class="title-text" text="Order Number"></Label>
+                        </StackLayout>
+                        <StackLayout class="order-item bottom-border">
+                            <Label class="title-text" text="Order Total"></Label>
+                            <Label class="mark-text" [text]="totalPrice"></Label>
+                        </StackLayout>
+                        <StackLayout class="order-item bottom-border">
+                            <Label class="title-text" text="Payment Type"></Label>
+                            <Label class="mark-text" [text]="cardData[selIndex].label"></Label>
+                        </StackLayout>
+                        <StackLayout class="order-item bottom-border">
+                            <Label class="title-text" text="Requested Time"></Label>
+                            <Label class="mark-text" [text]="requestedTime"></Label>
+                        </StackLayout>
+
+                    </ns-accordion>
+
+                </StackLayout>
+            </ScrollView>
+            <ScrollView *ngIf="componentCheckoutMode === CheckoutMode.delivery">
+                <StackLayout>
+                    <section label="PAYMENT SUMMARY">
+                        <FlexboxLayout class="payment-summary-item  bottom-border" marginTop="10">
+                            <Label class="title-text" text="Order Number"></Label>
+                            <Label class="mark-text" [text]=""></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="payment-summary-item bottom-border">
+                            <Label class="title-text" text="Your Order"></Label>
+                            <Label class="mark-text" [text]="totalPrice"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="payment-summary-item bottom-border" style="border-width:0; margin-bottom:20">
+                            <Label class="title-text bold-text" text="Your Pay"></Label>
+                            <Label class="mark-text bold-text" [text]="totalPrice"></Label>
+                        </FlexboxLayout>
+                    </section>
+                    <section label="PAYMENT DETAILS">
+                        <FlexboxLayout class="payment-detail-item bottom-border" marginTop="10">
+                            <Label class="title-text" text="Card Type"></Label>
+                            <Image [src]="cardData[selIndex].icon" class="card-img"></Image>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="payment-detail-item bottom-border">
+                            <Label class="title-text" text="Name on Card"></Label>
+                            <Label class="mark-text" [text]="'Alex'"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="payment-detail-item bottom-border" style="border-width:0">
+                            <Label class="title-text" text="Card Number"></Label>
+                            <Label class="mark-text" [text]="'123456'"></Label>
+                        </FlexboxLayout>
+                    </section>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+    </StackLayout>
+
+</StackLayout>

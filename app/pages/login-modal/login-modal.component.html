@@ -1,0 +1,29 @@
+<ns-modal [title]="title" [confirmLabel]="confirmLabel" [showButtons]="true" (onConfirm)="confirm()" (onCancel)="cancel()">
+    <StackLayout *ngIf="!isReset">
+        <section label="YOUR DETAILS">
+            <FlexboxLayout class="info-wrapper bottom-border">
+                <Label text="Email"></Label>
+                <TextField flexGrow="1" [(ngModel)]="email"></TextField>
+            </FlexboxLayout>
+            <FlexboxLayout class="info-wrapper bottom-border">
+                <Label text="Password"></Label>
+                <TextField flexGrow="1" secure="true" [(ngModel)]="password"></TextField>
+            </FlexboxLayout>
+        </section>
+        <StackLayout class="text-wrapper gray-bg">
+            <Label text="Don't have an account? Your account will be"></Label>
+            <Label text="created the first time you complete an order."></Label>
+            <Button class="active-color" text="Forgot your password?" (tap)="goResetPassword()"></Button>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout *ngIf="isReset" class="animation-left-to-right">
+        <StackLayout class="text-wrapper gray-bg">
+            <Label text="SUBMIT YOUR E-MAIL ADDRESS BELOW TO"></Label>
+            <Label text="RECEIVE A PASSWORD RESET LINK."></Label>
+        </StackLayout>
+        <FlexboxLayout class="info-wrapper bottom-border">
+            <Label text="Email"></Label>
+            <TextField flexGrow="1" [(ngModel)]="email"></TextField>
+        </FlexboxLayout>
+    </StackLayout>
+</ns-modal>

@@ -1,0 +1,133 @@
+@import '~nativescript-theme-core/scss/light';
+@import '~nativescript-theme-core/scss/index';
+$activeColor:#ff5439;
+$greenColor:#29bf25;
+$whiteColor:#fff;
+$grayColor:#787878;
+$heavyGrayColor:#404040;
+.icon {
+    font-family: FontAwesome, fontawesome-webfont;
+    font-size: 36px;
+    vertical-align: center;
+}
+
+.page {
+    color: $grayColor;
+}
+
+.normal-text {
+    color: $grayColor;
+}
+
+.mark-text {
+    color: $heavyGrayColor;
+}
+
+.title {
+    font-size: 25;
+    font-weight: bold;
+    text-align: center;
+    height: 60;
+}
+
+.header {
+    height: 50;
+    padding-left: 10;
+    color: $heavyGrayColor;
+    font-weight: bold;
+}
+
+.green-bg {
+    background-color: $greenColor;
+    color: $whiteColor;
+}
+
+.green-color {
+    color: $greenColor;
+}
+
+.active-bg {
+    background-color: $activeColor;
+    color: $whiteColor;
+}
+
+.active-color {
+    color: $activeColor;
+}
+
+.active-border {
+    border-width: 1;
+    border-color: $activeColor;
+}
+
+.gray-bg {
+    background-color: #efeeef;
+}
+
+.border {
+    border-width: 1;
+    border-color: #bebebe;
+}
+
+.bottom-border {
+    border-bottom-color: #e0e0e0;
+    border-bottom-width: 1
+}
+
+.modal-header-bottom-border {
+    border-bottom-color: $activeColor;
+    border-bottom-width: 2
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.widget {
+    background-color: #413d3a;
+    width: 100%;
+    color: $whiteColor;
+    padding: 12;
+    font-weight: bold;
+    Label {
+        margin: 0 3
+    }
+    .count {
+        border-color: $whiteColor;
+        border-width: 1.5;
+        border-radius: 100;
+        padding: 0 4
+    }
+}
+
+.animation-left-to-right {
+    animation-name: animation-left-to-right;
+    animation-duration: 0.5s;
+}
+
+.animation-right-to-left {
+    animation-name: animation-right-to-left;
+    animation-duration: 0.5s;
+}
+
+.right-position {
+    transform: translate(360, 0);
+}
+
+@keyframes animation-left-to-right {
+    from {
+        transform: translate(-360, 0)
+    }
+    to {
+        transform: translate(0, 0)
+    }
+}
+
+@keyframes animation-right-to-left {
+    from {
+        transform: translate(360, 0)
+    }
+    to {
+        transform: translate(0, 0)
+    }
+}

@@ -1,0 +1,8 @@
+<FlexboxLayout dock="top" class="widget">
+    <Label [text]="minOrder" flexGrow="1"></Label>
+    <StackLayout orientation="horizontal" (tap)="goCheckout()">
+        <Image src="~/images/cart_icon.png"></Image>
+        <Label [text]="totalPrice"></Label>
+        <Label [text]="cartCount" class="count"></Label>
+    </StackLayout>
+</FlexboxLayout>

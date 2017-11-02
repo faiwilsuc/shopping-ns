@@ -1,0 +1,6 @@
+<StackLayout>
+    <StackLayout *ngFor="let item of items" orientation="horizontal" (tap)="onSelect(item)" class="radio-box bottom-border mark-text">
+        <StackLayout [class]="'radio-icon ' + (selectedItem==item ? 'green-bg' : 'gray-bg')"></StackLayout>
+        <Label [text]="item.label"></Label>
+    </StackLayout>
+</StackLayout>

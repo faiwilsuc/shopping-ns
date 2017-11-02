@@ -1,0 +1,17 @@
+<ActionBar title="''" class="action-bar">
+    <NavigationButton *ngIf="navBtnVisible" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+    <StackLayout orientation="horizontal" horizontalAlignment="center">
+        <Image src="~/images/logo.png" class="action-image" (tap)="onNavToMain()"></Image>
+    </StackLayout>
+    <ActionItem (tap)="onToggleMainMenu()">
+        <Button [text]="'menu'|icon" class="icon green-color"></Button>
+    </ActionItem>
+</ActionBar>
+<FlexboxLayout *ngIf="showMainMenu" class="main-menu mark-text bold-text">
+    <StackLayout orientation="vertical">
+        <Button class="bottom-border" [text]="isAuthenticated ? 'Log out' : 'Log in'" (tap)="onLogin()">
+        </Button>
+        <Button class="bottom-border" *ngFor="let menuItem of mainMenuItems" [text]="menuItem.label" (tap)="onMainMenuNavigate(menuItem.route)">
+        </Button>
+    </StackLayout>
+</FlexboxLayout>

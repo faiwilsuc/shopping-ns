@@ -1,0 +1,4 @@
+<StackLayout [class]="'card-wrapper '+ (isSelected?'active-border':'border')" orientation="horizontal" (tap)="onTap()">
+    <Image [src]="icon" class="card-img"></Image>
+    <Label [text]="label"></Label>
+</StackLayout>

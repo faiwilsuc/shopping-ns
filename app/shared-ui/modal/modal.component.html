@@ -1,0 +1,12 @@
+<DockLayout class='page'>
+    <FlexboxLayout width="100%" dock="top" class="modal-header mark-text modal-header-bottom-border">
+        <Label flexGrow="1" [text]="title" class="title"></Label>
+        <Label [text]="'close'|icon" (Tap)="close()" class="icon green-color"></Label>
+    </FlexboxLayout>
+
+    <FlexboxLayout *ngIf="showButtons" width="100%" dock="bottom" class="btn-wrapper border">
+        <Button flexGrow="1" text="Cancel" (tap)="close()" class="border"></Button>
+        <Button flexGrow="1" text={{confirmLabel}} (Tap)="confirm()" class="active-color"></Button>
+    </FlexboxLayout>
+    <ng-content></ng-content>
+</DockLayout>

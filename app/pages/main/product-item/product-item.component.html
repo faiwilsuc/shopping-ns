@@ -1,0 +1,17 @@
+<GridLayout columns="*, 100" rows="*, *" class="container bottom-border">
+
+    <Label [text]="model.label" textWrap="true" class="label"></Label>
+
+    <FlexboxLayout col="1" (tap)="add()">
+        <Label flexGrow="1" [text]="price" textAlignment="right"></Label>
+        <Image src="~/images/add_icon.png" class="add-icon"></Image>
+    </FlexboxLayout>
+
+    <Label row="1" textWrap="true" [text]="model.detail"></Label>
+
+    <DockLayout row="1" col="1">
+        <Button dock="bottom" text="Customize" (tap)="customize()" class="customize active-bg"></Button>
+        <Label></Label>
+    </DockLayout>
+
+</GridLayout>

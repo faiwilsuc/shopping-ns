@@ -1,0 +1,32 @@
+<GridLayout #container class="container">
+  <DockLayout #dialog class="dialog">
+
+    <FlexboxLayout
+      dock="top"
+      width="100%"
+      class="header">
+      <StackLayout width="50">
+        <Image
+          *ngIf="navStack.length>0"
+          src="~/images/arrow_icon.png"
+          (tap)="popNav()"
+          class="back-button"></Image>
+      </StackLayout>      
+      <Label
+        flexGrow="1"
+        [text]="title"
+        class="title"></Label>
+      <StackLayout width="50">
+        <Image
+          *ngIf="navStack.length==0"
+          src="~/images/close_icon.png"
+          (tap)="hide()"></Image>
+      </StackLayout>      
+    </FlexboxLayout>
+
+    <GridLayout>
+      <ng-content></ng-content>
+    </GridLayout>
+
+  </DockLayout>
+</GridLayout>

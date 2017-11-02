@@ -1,0 +1,39 @@
+<ns-modal [title]="title" [confirmLabel]="'Start your order'" [showButtons]="showModalButtons" (onConfirm)="confirm()" (onCancel)="cancel()">
+
+    <ScrollView #subPage class="right-position">
+        <StackLayout>
+
+            <radio-group *ngIf="componentSubpage===StartOrderSubpage.suburbsPage" [items]="suburbService.suburbs" [selectedItem]="selectedSuburb" (onSelected)="onCloseSubpage($event)">
+            </radio-group>
+            <radio-group *ngIf="componentSubpage===StartOrderSubpage.datePage" [items]="deliveryDates" [selectedItem]="selectedDate" (onSelected)="onCloseSubpage($event)">
+            </radio-group>
+            <radio-group *ngIf="componentSubpage===StartOrderSubpage.timePage" [items]="deliveryTimes" [selectedItem]="selectedTime" (onSelected)="onCloseSubpage($event)">
+            </radio-group>
+
+        </StackLayout>
+    </ScrollView>
+
+    <ScrollView #mainPage>
+        <StackLayout *ngIf="showMainpage" orientation="vertical">
+
+            <section label="ORDER TYPE">
+                <radio-group [items]="orderTypes" [selectedItem]="orderTypes[0]" (onSelected)="onSelectedType($event)">
+                </radio-group>
+            </section>
+
+            <section label="DELIVERY SUBURB">
+                <detail-item [label]="selectedSuburb ? selectedSuburb.label + ' - ' + selectedSuburb.postcode : 'Select suburb...'" [color]="selectedSuburb ? '#575959' : '#ff5832'" (tap)="showSuburbs()">
+                </detail-item>
+            </section>
+
+            <section>
+                <detail-item [label]="selectedDate ? selectedDate.label : 'Select date...'" [color]="selectedDate ? '#575959' : '#ff5832'" (tap)="showDates()">
+                </detail-item>
+                <detail-item [label]="selectedTime ? selectedTime.label : 'Select time...'" [color]="selectedTime ? '#575959' : '#ff5832'" (tap)="showTimes()">
+                </detail-item>
+            </section>
+
+        </StackLayout>
+    </ScrollView>
+
+</ns-modal>

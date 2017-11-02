@@ -1,0 +1,15 @@
+<GridLayout columns="auto,*,auto" class="bottom-border" padding="15 10">
+    <StackLayout col="0" orientation="horizontal" verticalAlignment="top">
+        <Button text="-" class="green-bg bold-text" (tap)="remove()">
+        </Button>
+        <Button text="+" class="green-bg bold-text" (tap)="add()" marginLeft="5">
+        </Button>
+    </StackLayout>
+    <StackLayout col="1">
+        <Label [text]="model.label" textWrap="true" class="header" height="26"></Label>
+        <Label textWrap="true" [text]="model.detail" paddingLeft="10"></Label>
+    </StackLayout>
+    <StackLayout col="2" verticalAlignment="top">
+        <Label [text]="price"></Label>
+    </StackLayout>
+</GridLayout>

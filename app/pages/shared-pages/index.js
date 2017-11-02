@@ -1,0 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var shared_pages_module_1 = require("./shared-pages.module");
+exports.SharedPagesModule = shared_pages_module_1.SharedPagesModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZEQUF3RDtBQUFoRCxrREFBQSxpQkFBaUIsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCB7U2hhcmVkUGFnZXNNb2R1bGV9IGZyb20gJy4vc2hhcmVkLXBhZ2VzLm1vZHVsZSc7XHJcbiJdfQ==

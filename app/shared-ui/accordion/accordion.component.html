@@ -1,0 +1,13 @@
+<StackLayout [class]="open ? '' : 'closed'">
+
+    <FlexboxLayout (tap)="onTap()" class="header bottom-border">
+        <Image *ngIf="icon" [src]="icon" class="left-icon"></Image>
+        <Label flexGrow="1" [text]="label"></Label>
+        <Image src="~/images/arrow_icon.png" class="arrow-icon"></Image>
+    </FlexboxLayout>
+
+    <StackLayout class="content">
+        <ng-content></ng-content>
+    </StackLayout>
+
+</StackLayout>

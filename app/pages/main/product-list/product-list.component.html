@@ -1,0 +1,19 @@
+<StackLayout class="page animation-left-to-right">
+    <ns-shopping-cart-widget></ns-shopping-cart-widget>
+
+
+    <ScrollView>
+        <StackLayout orientation="vertical">
+
+            <Image src="~/images/main.png"></Image>
+
+            <FlexboxLayout class="details">
+            </FlexboxLayout>
+
+            <ns-accordion *ngFor="let group of productGroup; let i=index" [label]="group.label" [icon]="group.icon ? '~/images/' + group.icon + '_icon.png' : ''" [open]="openedIndex===i" (onOpened)="onOpenGroup($event ? i : -1)">
+                <ns-product-item *ngFor="let product of group.products" [model]="product" (onAdd)="onAdd($event)"></ns-product-item>
+            </ns-accordion>
+
+        </StackLayout>
+    </ScrollView>
+</StackLayout>

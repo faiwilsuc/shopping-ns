@@ -1,0 +1,17 @@
+.left-icon {
+    width: 18;
+    margin-right: 5
+}
+
+.arrow-icon {
+    width: 35;
+    transform: rotate(-90)
+}
+
+.closed .arrow-icon {
+    transform: rotate(90)
+}
+
+.closed .content {
+    height: 0
+}
